@@ -14,7 +14,7 @@ numbers = {
     'nine': '9'
 }
 
-def wordnum(x, from_beginning=True):
+def wordnumFrom(x, from_beginning=True):
     max = len(x)
     size = 1
     while(size <= max):
@@ -27,8 +27,8 @@ def wordnum(x, from_beginning=True):
 start = time.perf_counter()
 with open("input.txt", "r") as f:
     for line in f:
-        first = wordnum(line)
-        last = wordnum(line, False)
+        first = wordnumFrom(line)
+        last = wordnumFrom(line, False)
         calibrated_num = first+last
         calibration_vals.append(int(calibrated_num))
         #print(first, last)
