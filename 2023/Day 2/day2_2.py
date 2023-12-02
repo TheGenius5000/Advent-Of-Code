@@ -22,7 +22,6 @@ def resultmatrixhelper(results):
                 break
             break
       i0 += 1
-    #We should have successfully proven that the game is under the maxs at this point
     return [min_colours['r'], min_colours['g'], min_colours['b']]
 
 start = time.perf_counter()
