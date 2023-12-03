@@ -3,6 +3,7 @@ import re
 
 symbols = "!@#$%^&*_-+=/"
 
+#Looks around the line on the grid to find the associative numbers and returns their sum
 def peekForNums(line, symbol):
   amount = 0
   length = 0
@@ -18,15 +19,17 @@ def peekForNums(line, symbol):
   return amount
 
 start = time.perf_counter()
-with open("D:/GitHub/Advent-Of-Code/2023/Day 03/test.txt", "r") as f:
+with open("input.txt", "r") as f:
   lines = f.readlines()
 
 total = 0
 
+#Loop on every symbol on the input
 for i0, line in enumerate(lines):
   if i0 != 0 and i0 != (len(lines)-1):
     for i1, ch in enumerate(line):
       if ch in symbols:
+        #9x9 grid around the symbol
         schematic_space = [lines[i0-1][i1-3:i1+4], lines[i0][i1-3:i1+4], lines[i0+1][i1-3:i1+4]]
         for schematic in schematic_space:
           if any(x.isdigit() for x in schematic[2:5]):
