@@ -13,9 +13,8 @@ def peekForNums(line, symbol):
         break
     length += len(n)
     if n.isdigit():
-      if length < 3:
-        continue
-      amount.append(int(n))
+      if length >= 3:
+        amount.append(int(n))
   return amount
 
 start = time.perf_counter()
