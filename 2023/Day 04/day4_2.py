@@ -2,7 +2,6 @@ import numpy as np
 import time
 
 wins = []
-total = 0
 
 start = time.perf_counter()
 with open("input.txt") as f:
