@@ -32,7 +32,7 @@ def mapper(location, maps):
   return location
 
 start = time.perf_counter()
-with open("D:/GitHub/Advent-Of-Code/2023/Day 05/test.txt") as f:
+with open("input.txt") as f:
   lines = f.readlines()
 
 seeds = list(map(int, lines[0].strip().split(":")[1].split())) 
@@ -45,6 +45,5 @@ for seed in seeds:
   destinations1.append(location)
 
 print(min(destinations1))
-print(min(destinations2))
 end = time.perf_counter()
 print(end-start)
