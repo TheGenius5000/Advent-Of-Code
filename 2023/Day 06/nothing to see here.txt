@@ -1,1 +1,3 @@
 I did it manually this time!
+
+It's just (time-x)x > record time
