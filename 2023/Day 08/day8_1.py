@@ -1,7 +1,7 @@
 import time
 
 start = time.perf_counter()
-with open("D:/GitHub/Advent-Of-Code/2023/Day 08/input.txt") as f:
+with open("input.txt") as f:
     lines = f.readlines()
 
 directions = lines[0].strip()
