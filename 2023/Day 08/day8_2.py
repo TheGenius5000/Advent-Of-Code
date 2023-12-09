@@ -28,9 +28,10 @@ def z_finder(curr_location):
       elif ch == "R":
         curr_location = options[1]
 
+print(z_finder("AAA"))
+
 a_steps = [z_finder(key) for key in camel_map if key[2] == "A"]
 print(math.lcm(*a_steps))
-
 
 end = time.perf_counter()
 print(end-start)
