@@ -65,29 +65,13 @@ space = [list(''.ljust(width)) for x in lines]
 #You're gonna have to give the direction of the pipe for start here...
 length = path_finder(start_location, "W")
 
-
-
-for i, xs in enumerate(space):
-  for j, x in enumerate(xs):
-    if x.isspace(): space[i][j] = "."
-    else: break
-
-space = [x+["."] for x in space]
-
-changed = False
-for z in range(100):
-  changed = False
-  for i, xs in enumerate(space):
-    for j, x in enumerate(xs):
-      if x.isspace() and any([space[i-1][j] == ".", space[i+1][j] == ".", space[i][j-1] == ".", space[i][j+1] == "."]):
-        changed = True
-        space[i][j] = "."
-
 for i, xs in enumerate(space):
   for j, x in enumerate(xs):
     space[i][j] = better_pipes.get(space[i][j])
 
+#Might need MS Paint for this one...
 [print(''.join(z)) for z in space]
+
 print(length//2)
 end = time.perf_counter()
 print(end-start)
