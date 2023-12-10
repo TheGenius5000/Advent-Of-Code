@@ -39,7 +39,7 @@ def path_finder(place, orientation):
 
 start = time.perf_counter()
 
-with open("D:/GitHub/Advent-Of-Code/2023/Day 10/input.txt") as f:
+with open("input.txt") as f:
   lines = [x.strip() for x in f.readlines()]
 
 start_location = [(i, x.index("S")) for i, x in enumerate(lines) if "S" in x][0]
@@ -62,5 +62,6 @@ i = A+1-length/2
 
 print(length//2)
 print(i)
+
 end = time.perf_counter()
 print(end-start)
