@@ -54,7 +54,7 @@ def path_finder(place, orientation):
         orientation = "S" if orientation == "E" else "W"
   return length
 
-with open("D:/GitHub/Advent-Of-Code/2023/Day 10/input.txt") as f:
+with open("input.txt") as f:
   lines = [x.strip() for x in f.readlines()]
 
 start_location = [(i, x.index("S")) for i, x in enumerate(lines) if "S" in x][0]
