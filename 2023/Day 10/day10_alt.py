@@ -20,7 +20,7 @@ def path_finder(place, orientation):
     x, y = place
     char = lines[x][y]
     space[x][y] = char
-    if char in "F7JL":
+    if char in "F7JL": #Vertices
       x_coords.append(x)
       y_coords.append(y)
     length += 1
@@ -54,9 +54,7 @@ length = path_finder(start_location, "W")
 
 
 #Shoelace formula
-s = np.roll(y_coords, 1)
 A = 0.5*np.abs(np.dot(x_coords, np.roll(y_coords, 1)) - np.dot(y_coords, np.roll(x_coords, 1)))
-print(A, len(x_coords))
 #Pick's theorem
 i = A+1-length/2
 
