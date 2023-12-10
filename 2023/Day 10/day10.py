@@ -12,15 +12,6 @@ better_pipes = {
   "S": "S"
 }
 
-
-def define_direction(co_ord):
-  try:
-    direction = lines[co_ord[0]][co_ord[1]]
-  except:
-    direction = None
-  return direction
-
-
 def path_finder(place, orientation):
   length = 0
   x, y = place
