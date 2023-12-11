@@ -23,8 +23,8 @@ for i, (a, b) in enumerate(galaxy_coords):
     total += dist
   
 print(total)
-total = 0
-total = sum([sum([sum([abs(d-b), abs(c-a)]+[1000000-1 for x in empty_columns if x in range(min(d,b), max(d,b))]+[1000000-1 for x in empty_rows if x in range(min(c,a), max(c,a))]) for c, d in galaxy_coords[i+1:]]) for i, (a, b) in enumerate(galaxy_coords)])
+#total = 0
+#total = sum([sum([sum([abs(d-b), abs(c-a)]+[1000000-1 for x in empty_columns if x in range(min(d,b), max(d,b))]+[1000000-1 for x in empty_rows if x in range(min(c,a), max(c,a))]) for c, d in galaxy_coords[i+1:]]) for i, (a, b) in enumerate(galaxy_coords)])
 
 #for i, (a, b) in enumerate(galaxy_coords):
   #total += 
@@ -39,9 +39,6 @@ total = sum([sum([sum([abs(d-b), abs(c-a)]+[1000000-1 for x in empty_columns if 
     #   if x in range(min(c,a), max(c,a)):
     #     dx += (1000000-1)
     # dist = dy+dx
-
-
-print(total)
 
 """ print(sum([
   sum([
