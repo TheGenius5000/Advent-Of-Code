@@ -2,7 +2,7 @@ import re
 import functools
 import time
 
-lines = [(((x[0]+'?')*5)[:-1], [int(y) for y in x[1].split(",")]*5) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]]
+#lines = [(((x[0]+'?')*5)[:-1], [int(y) for y in x[1].split(",")]*5) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]]
 #lines = [(''.join(list(filter(None, re.split('(\.)',''.join(re.sub('\.\.+', '.', x[0])).strip('.'))))), [int(y) for y in x[1].split(",")]) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]]
 
 
@@ -45,10 +45,10 @@ def permutate(conditions, target_str):
   return total
 
 start = time.perf_counter()
-for i, (conditions, groups) in enumerate(lines):
+for i, (conditions, groups) in enumerate([(((x[0]+'?')*5)[:-1], [int(y) for y in x[1].split(",")]*5) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]]):
   targets = ['#'*x+'.' for x in groups]
   targets[-1] = targets[-1].replace('.', '')
-  stack = []
+
 
   if len(''.join(targets)) == len(conditions):
     totals.append(1)
@@ -58,6 +58,6 @@ for i, (conditions, groups) in enumerate(lines):
   totals.append(this_go)
 
 
-print(sum(totals))
+print(sum([permutate(conditions, ''.join(['#'*x+'.' if i != len(groups)-1 else '#'*x for i, x in enumerate(groups) ])) for i, (conditions, groups) in enumerate([(((x[0]+'?')*5)[:-1], [int(y) for y in x[1].split(",")]*5) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]])]))
 end = time.perf_counter()
 print(end-start)
