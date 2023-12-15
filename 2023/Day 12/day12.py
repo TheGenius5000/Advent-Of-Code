@@ -1,6 +1,7 @@
 import re
 
-lines = [(((''.join(list(filter(None, re.split('(\.)',''.join(re.sub('\.\.+', '.', x[0])).strip('.')))))+'?')*5)[:-1], [int(y) for y in x[1].split(",")]*5) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]]
+#lines = [(''.join(list(filter(None, re.split('(\.)',''.join(re.sub('\.\.+', '.', x[0])).strip('.'))))), [int(y) for y in x[1].split(",")]) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/input.txt")]]
+lines = [(((''.join(list(filter(None, re.split('(\.)',''.join(re.sub('\.\.+', '.', x[0])).strip('.')))))+'?')*5)[:-1], [int(y) for y in x[1].split(",")]*5) for x in [x.strip().split() for x in open("D:/GitHub/Advent-Of-Code/2023/Day 12/test.txt")]]
 
 totals = []
 
@@ -37,9 +38,9 @@ for i, (conditions, groups) in enumerate(lines):
   stack = []
   total = 0
 
-  if len(''.join(targets)) == len(conditions):
+  """ if len(''.join(targets)) == len(conditions):
     totals.append(1)
-    continue
+    continue """
 
   stack.append((conditions, targets.copy()))
   while stack != []:
