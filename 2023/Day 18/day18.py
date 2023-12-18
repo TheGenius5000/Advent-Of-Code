@@ -1,6 +1,6 @@
 import numpy as np
 
-lines = [tuple(x.split()) for x in open("D:/GitHub/Advent-Of-Code/2023/Day 18/input.txt").read().splitlines()]
+lines = [tuple(x.split()) for x in open("input.txt").read().splitlines()]
 
 print(lines)
 
