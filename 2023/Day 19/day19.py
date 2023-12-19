@@ -1,4 +1,28 @@
 import copy
+import time
+
+def combination_search(location, ranges):
+  while location not in "AR":
+    for k, v in workflows[location].items():
+      if not v: 
+        location = k
+        continue
+      category, operation, val = k[0], k[1], int(k[2:])
+      if operation == ">":
+        new_ranges = copy.deepcopy(ranges)
+        new_ranges[category][0] = val+1
+        combination_search(v, new_ranges)
+        ranges[category][1] = val
+      elif operation == "<":
+        new_ranges = copy.deepcopy(ranges)
+        new_ranges[category][1] = val-1
+        combination_search(v, new_ranges)
+        ranges[category][0] = val
+  if location == "A":
+    acceptible_parts.append(ranges)
+
+
+start = time.perf_counter()
 workflows_input, parts_input = open("input.txt").read().split("\n\n")
 
 parts = [dict([(split_kvs := kvs.split("="))[0], int(split_kvs[1])] for kvs in part[1:-1].split(",")) for part in parts_input.splitlines()]
@@ -24,26 +48,6 @@ print(sum([sum(d.values()) for d in accepted]))
 
 acceptible_parts = []
 
-def combination_search(location, ranges):
-  while location not in "AR":
-    for k, v in workflows[location].items():
-      if not v: 
-        location = k
-        continue
-      category, operation, val = k[0], k[1], int(k[2:])
-      if operation == ">":
-        new_ranges = copy.deepcopy(ranges)
-        new_ranges[category][0] = val+1
-        combination_search(v, new_ranges)
-        ranges[category][1] = val
-      elif operation == "<":
-        new_ranges = copy.deepcopy(ranges)
-        new_ranges[category][1] = val-1
-        combination_search(v, new_ranges)
-        ranges[category][0] = val
-  if location == "A":
-    acceptible_parts.append(ranges)
-
 combination_search("in", {'x': [1, 4000], 'm': [1, 4000], 'a': [1, 4000], 's': [1, 4000]})
 total = 0
 for d in acceptible_parts:
@@ -53,3 +57,5 @@ for d in acceptible_parts:
   total += temp_total
 
 print(total)
+end = time.perf_counter()
+print(end-start)
