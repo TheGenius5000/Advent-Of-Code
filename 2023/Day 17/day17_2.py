@@ -3,7 +3,7 @@ import heapq
 from enum import Enum
 
 start = time.perf_counter()
-losses = [list(map(int, list(x))) for x in open("D:/GitHub/Advent-Of-Code/2023/Day 17/input.txt").read().splitlines()]
+losses = [list(map(int, list(x))) for x in open("input.txt").read().splitlines()]
 
 directions = {
   "W": (-1, 0),
