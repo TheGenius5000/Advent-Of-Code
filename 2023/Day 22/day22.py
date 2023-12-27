@@ -10,7 +10,7 @@ cascade_total = 0
 for i, ((xstart, ystart, zstart), (xend, yend, zend)) in enumerate(bricks):
   if zend == 1 or zstart == 1: continue
   possible_lowest = 1
-  for j, ((x0, y0, z0), (x1, y1, z1)) in enumerate(bricks[:i]):
+  for (x0, y0, z0), (x1, y1, z1) in bricks[:i]:
     if len(range(max(x0, xstart), min(x1, xend)+1)) > 0:
       if len(range(max(y0, ystart), min(y1, yend)+1)) > 0:
         if z1+1 > possible_lowest: possible_lowest = z1+1
