@@ -1,20 +1,11 @@
 import time
 
-# def fall_amount(key):
-#   what_falls = 0
-#   for v in supporting[key]
-  
-def addTuple(tup1, tup2):
-  return tuple(sum(x) for x in zip(tup1,tup2))
-
 start = time.perf_counter()
-lines = [[tuple(map(int, coords.split(","))) for coords in line.split("~")] for line in open("input.txt").read().splitlines()]
-#viz(lines)
-space = [[[None for _ in range(10)] for _ in range(10)] for _ in range(10)]
-bricks = sorted(lines, key=lambda x: x[0][2])
+
+bricks = sorted([[tuple(map(int, coords.split(","))) for coords in line.split("~")] for line in open("input.txt").read().splitlines()], key=lambda x: x[0][2])
 supporting = {}
 brick_remove_options = set()
-
+cascade_total = 0
 
 for i, (brick_start, brick_end) in enumerate(bricks):
   diff = tuple(b-a for a, b in zip(brick_start, brick_end))
@@ -24,7 +15,6 @@ for i, (brick_start, brick_end) in enumerate(bricks):
 
 for i, ((xstart, ystart, zstart), (xend, yend, zend)) in enumerate(bricks):
   if zend == 1 or zstart == 1: continue
-  #delta = tuple(giveDelta(b, a) for a, b in zip(bricks[i][0], bricks[i][1]))
   possible_lowest = 1
   for j, ((x0, y0, z0), (x1, y1, z1)) in enumerate(bricks[:i]):
     if len(range(max(x0, xstart), min(x1, xend)+1)) > 0:
@@ -33,11 +23,9 @@ for i, ((xstart, ystart, zstart), (xend, yend, zend)) in enumerate(bricks):
   bricks[i][0] = (xstart, ystart, possible_lowest)
   bricks[i][1] = (xend, yend, possible_lowest + (zend-zstart))
 
-
 for i, ((xstart, ystart, zstart), (xend, yend, zend)) in enumerate(bricks):
   supporting[(xstart, ystart, zstart), (xend, yend, zend)] = []
-  for another_brick in bricks[i+1:]:
-    (x0, y0, z0), (x1, y1, z1) = another_brick
+  for (x0, y0, z0), (x1, y1, z1) in bricks[i+1:]:
     if z0 == zend+1:
       if len(range(max(x0, xstart), min(x1, xend)+1)) > 0:
         if len(range(max(y0, ystart), min(y1, yend)+1)) > 0:
@@ -51,8 +39,6 @@ for k, v in supporting.items():
     except:
       supported_by[tup] = [k]
 
-
-
 for k, v in supporting.items():
   if not v:
     brick_remove_options.add(k)
@@ -62,9 +48,20 @@ for k, v in supporting.items():
   else:
     brick_remove_options.add(tuple(k))
 
+for k, v in supporting.items():
+  if k in brick_remove_options: continue
+  stack = [k]
+  falling_history = set()
+  while stack:
+    current_brick = stack.pop()
+    falling_history.add(current_brick)
+    for brick in supporting[current_brick]:
+      if set(supported_by[brick]).issubset(falling_history):
+        stack.append(brick)
+  cascade_total += len(falling_history)-1
+
+print(cascade_total)
 print(len(brick_remove_options))
+
 end = time.perf_counter()
 print(end-start)
-
-
-#for brick_start, brick_end in lines:
