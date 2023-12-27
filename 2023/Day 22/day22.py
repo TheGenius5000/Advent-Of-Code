@@ -7,12 +7,6 @@ supporting = {}
 brick_remove_options = set()
 cascade_total = 0
 
-for i, (brick_start, brick_end) in enumerate(bricks):
-  diff = tuple(b-a for a, b in zip(brick_start, brick_end))
-  if any([x < 0 for x in diff]):
-    bricks[i][0] = brick_end
-    bricks[i][1] = brick_start
-
 for i, ((xstart, ystart, zstart), (xend, yend, zend)) in enumerate(bricks):
   if zend == 1 or zstart == 1: continue
   possible_lowest = 1
