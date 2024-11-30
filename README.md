@@ -1,4 +1,4 @@
-# Advent-Of-Code-2023
+# Advent-Of-Code
 Advent of Code database.
 
 Feel free to take a look around!
