@@ -1,5 +1,3 @@
-from itertools import groupby
-
 row = [[], []]
 with open("input.txt", "r") as f:
   for line in f.readlines():
