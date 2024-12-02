@@ -1,4 +1,4 @@
-lines = open("D:\\GitHub\\Advent-Of-Code\\2024\\Day 2\\input.txt", "r").read().splitlines()
+lines = open("input.txt", "r").read().splitlines()
 
 safe_lines = 0
 
