@@ -5,7 +5,6 @@ safe_numbers = 0
 
 for i, numbers in enumerate(lines):
   #unsafe_numbers_list.append([])
-  tolerance = 0
   past_num = numbers[0]
   increasing = past_num < numbers[1]
   unsafe = False
