@@ -16,6 +16,7 @@ for line in page_numbers:
       continue
     if any([x in line[i+1:] for x in impossible_numbers[n]]):
       incorrect_orderings.append()
+      break
   else:
     total += line[len(line)//2]
     
