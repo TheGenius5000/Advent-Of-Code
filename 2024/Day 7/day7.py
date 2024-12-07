@@ -5,7 +5,7 @@ from operator import mul, add
 
 start_time = time.time()
 
-lines = {int((split_x := x.split(": "))[0]): list(map(int, split_x[1].split())) for x in open("D:\\GitHub\\Advent-Of-Code\\2024\\Day 7\\input.txt").read().splitlines()}
+lines = {int((split_x := x.split(": "))[0]): list(map(int, split_x[1].split())) for x in open("input.txt").read().splitlines()}
 success = []
 targets = []
 total, total2 = 0,0
