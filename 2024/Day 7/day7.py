@@ -14,11 +14,7 @@ def concat(a, b):
 def combinations(length, operations):
   if length == 1:
     return set([(operation,) for operation in operations])
-  new_set = set()
-  for operation in operations:
-    for subset in combinations(length-1, operations):
-      new_set.add((operation,)+subset)
-  return new_set
+  return set([(operation,)+subset for subset in combinations(length-1, operations) for operation in operations])
 
 for target, nums in lines.items():
   for total_part, operations_part in [(0, (mul,add)), (1, (mul,add,concat))]:
@@ -28,7 +24,6 @@ for target, nums in lines.items():
         evaluation = f(evaluation, nums[i+1])
       if evaluation == target:
         total[total_part] += target
-        #success.append(target)
         break
     else: continue
     break
