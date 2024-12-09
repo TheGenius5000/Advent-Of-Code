@@ -4,7 +4,7 @@ import time
 
 start_time = time.time()
 
-line = open("D:\\GitHub\\Advent-Of-Code\\2015\\Day 1\\input.txt").read()
+line = open("input.txt").read()
 
 floor = 0
 basement_pos = 0
