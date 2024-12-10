@@ -67,8 +67,8 @@ int main() {
         }
     }
 
-    std::cout << score1 << std::endl;
-    std::cout << score2 << std::endl;
+    std::cout << score1 << "\n";
+    std::cout << score2 << "\n";
 
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed_time = end_time - start_time;
