@@ -14,17 +14,18 @@ int main() {
     std::ifstream inputFile("input.txt");
     std::vector<std::vector<int>> lines;
     std::string line;
-    std::vector<std::pair<int, int>> directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+    
 
     while (std::getline(inputFile, line)) {
         std::vector<int> row;
-        for (char ch : line) {
+        for (const char ch : line) {
             row.push_back(ch - '0'); // Convert char to int
         }
         lines.push_back(row);
     }
     inputFile.close();
 
+    std::vector<std::pair<int, int>> directions = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
     std::set<std::pair<int, int>> visited_9;
     std::stack<std::pair<int, int>> stack;
     int score1 = 0, score2 = 0;
