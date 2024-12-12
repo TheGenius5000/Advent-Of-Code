@@ -4,7 +4,7 @@ import functools
 start_time = time.time()
 
 lines = list(map(int,"125 17".split(" ")))
-lines = list(map(int,open("D:\\GitHub\\Advent-Of-Code\\2024\\Day 11\\input.txt").read().strip("\n").split(" ")))
+lines = list(map(int,open("input.txt").read().strip("\n").split(" ")))
 blinks = 25
 
 @functools.cache
