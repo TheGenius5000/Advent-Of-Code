@@ -4,6 +4,7 @@ from copy import deepcopy
 
 start_time = time.time()
 
+#I use this to fill in the adjacency matrices with the scores from a start value. 
 def moveAround(queue, matrix, end_goal):
   global grid
   while queue:
