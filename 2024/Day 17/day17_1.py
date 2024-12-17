@@ -2,7 +2,7 @@ import time
 
 start_time = time.time()
 
-lines = open("D:\\GitHub\\Advent-Of-Code\\2024\\Day 17\\input.txt").read().splitlines()
+lines = open("input.txt").read().splitlines()
 
 class Operand():
   def __init__(self, value: int):
@@ -38,8 +38,7 @@ def bxc(o: Operand):
 
 def out(o: Operand):
   ans = o.combo() % 8
-  #print(f"{ans},", end="")
-  outputs.append(ans)
+  print(f"{ans},", end="")
 
 def bdv(o: Operand):
   ans = registers[4] >> o.combo()
@@ -63,8 +62,6 @@ opcode_table = {
   7: cdv
 }
 
-outputs = []
-
 instruction_pointer = 0
 
 for i, x in enumerate(lines[:3]):
@@ -75,8 +72,6 @@ target = ''.join(map(str, program))
 
 
 instruction_pointer = 0
-outputs = []
-registers[4] = 117440
 print(f"Program: {target}")
 starting_reg = registers[4]
 while instruction_pointer <= len(program):
@@ -87,18 +82,8 @@ while instruction_pointer <= len(program):
   if opcode != jnz or not outcome:
     instruction_pointer += 2
 
-stuff = ''.join(map(str, outputs))
-binary_str = []
 
-for p in reversed(program):
-  binary_str.append(f'{int(p):03b}')
-
-binary_str.append("000")
-
-p2 = int(''.join(binary_str), 2)
-
-print(outputs)
-print(p2)
+print()
 
 end_time = time.time()
 
