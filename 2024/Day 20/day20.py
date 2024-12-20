@@ -1,16 +1,21 @@
 import time
 import heapq
 
+## Day 20: Race Condition
+## Difficulty: Hard
+## Need-to-know skills: Dijkstra, Flood-fill
+
 ## Problem:  A race on a 2d grid where you are given one cheat to ignore boundaries for 2 squares.
 ##           Part 1: Count the number of cheats that save at least 100 distance.
 ##           Part 2: You can use the one cheat to ignore boundaries for up to 20 squares.
-##           Count the number of cheats that save at least 100 distance.
+##                   Count the number of cheats that save at least 100 distance.
 
 ## Solution: Part 1: First, Dijkstra's algorithm to get all the distances for the reachable squares ('.' or 'S' or 'E') from start ('S'). 
 ##           Then, Flood-fill from the start of the cheat position towards any reachable end 2 squares away, ignoring boundaries.
 ##           Part 2: This again but for squares up to 20 squares away.
 
-## Average runtime: ~5.6 seconds
+## Average runtime: ~5.7 seconds
+
 
 start_time = time.perf_counter()
 
