@@ -1,5 +1,15 @@
 import time
 
+## Day 
+## Difficulty: 
+## Need-to-know skills: 
+
+## Problem: 
+
+## Solution: 
+
+## Average runtime: ~
+
 start_time = time.perf_counter()
 
 lines = open().read().splitlines()
