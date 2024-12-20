@@ -3,7 +3,7 @@ import heapq
 
 start_time = time.perf_counter()
 
-grid = list(map(list, open(r"D:\GitHub\Advent-Of-Code\2024\Day 20\input.txt").read().splitlines()))
+grid = list(map(list, open(r"input.txt").read().splitlines()))
 
 ans1 = 0
 
