@@ -33,8 +33,6 @@ directional_keypad = [[None, '^','A'],['<','v','>']]
 dirs_to_instructions = {k:v for k, v in zip([(-1,0), (1,0), (0,-1), (0,1)], ['<','>','^','v'])}
 instructions_to_dirs = {k:v for k, v in zip(['<','>','^','v'], [(-1,0), (1,0), (0,-1), (0,1)])}
 
-button_translation = dict()
-
 def unit_vec(vec):
   return 0 if vec == 0 else vec//abs(vec)
 
@@ -72,12 +70,6 @@ def travel_table_builder(keypad):
           for i0, button_source in enumerate(keypad_row_start) 
           for j1, keypad_row_dest in enumerate(keypad) 
           for i1, button_dest in enumerate(keypad_row_dest)}
-
-def check_for_gap(start,sequence):
-  x,y = start
-  for button in sequence:
-    vec_x, vec_y = instructions_to_dirs[button]
-  return True
 
 def init_travelling_record():
   return {(k,v):0 for keypad_line in directional_keypad for k in keypad_line for keypad_line2 in directional_keypad for v in keypad_line2 if not any(b is None for b in [k,v])}
