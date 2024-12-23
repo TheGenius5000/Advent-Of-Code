@@ -12,7 +12,8 @@ import time
 
 start_time = time.perf_counter()
 
-lines = open().read().splitlines()
+with open() as f:
+  lines = f.read().splitlines()
 
 end_time = time.perf_counter()
 
