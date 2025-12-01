@@ -1,19 +1,23 @@
 import time
 
 ## Day 
-## Difficulty: 
-## Need-to-know skills: 
-
-## Problem: 
-
-## Solution: 
-
 ## Average runtime: ~
 
 start_time = time.perf_counter()
 
 with open() as f:
   lines = f.read().splitlines()
+
+## Part 1
+# Problem: 
+
+# Solution: 
+
+## Part 2
+# Problem: 
+
+# Solution: 
+
 
 end_time = time.perf_counter()
 
