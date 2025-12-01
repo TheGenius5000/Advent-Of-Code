@@ -51,3 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 /.vscode
+
+#Advent of Code stuff
+input
+input_test
