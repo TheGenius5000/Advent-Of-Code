@@ -1,11 +1,11 @@
 import time
 
 ## Day 3 - Lobby
-## Average runtime: ~
+## Average runtime: ~0.018 seconds
 
 start_time = time.perf_counter()
 
-with open(r"D:\GitHub\Advent-Of-Code\2025\Day 3\input.txt") as f:
+with open(r"input.txt") as f:
   lines = f.read().splitlines()
 
 ## Part 1
