@@ -2,7 +2,7 @@ import time
 import math
 
 ## Day 2 - Gift Shop
-## Average runtime: ~
+## Average runtime: ~0.003 seconds
 
 start_time = time.perf_counter()
 
