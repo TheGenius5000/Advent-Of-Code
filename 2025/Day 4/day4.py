@@ -1,7 +1,7 @@
 import time
 
 ## Day 4 - Printing Department
-## Average runtime: ~
+## Average runtime: ~0.38 seconds
 
 start_time = time.perf_counter()
 
@@ -16,34 +16,61 @@ with open(r"input.txt") as f:
 dirs = set((x,y) for x in [-1,0,1] for y in [-1,0,1])
 dirs.remove((0,0))
 
-for x in lines:
-  print(''.join(x))
+ans1 = 0 #1st free roll count
+ans2 = 0 #All possible free rolls
 
-ans1 = 0
+#Goes through a grid, marks all free rolls with an x, then returns the new grid and the count of how many there are.
+def free_roll_counter(lines):
+  count = 0
+  for y, line in enumerate(lines):
+    for x, ch in enumerate(line):
+      if ch == '.': continue
+      adj_rolls = 0
+      for d_x, d_y in dirs:
+        new_x, new_y = x+d_x, y+d_y
+        if any([new_x<0, new_y<0, new_x>=len(line), new_y>=len(lines)]): continue
+        elif lines[new_y][new_x] in '@x':
+          adj_rolls += 1
+        if adj_rolls >= 4: break
+      if adj_rolls < 4:
+        lines[y][x] = 'x'
+        count += 1
+  return (lines, count)
 
-for y, line in enumerate(lines):
-  for x, ch in enumerate(line):
-    if ch == '.': continue
-    adj_rolls = 0
-    for d_x, d_y in dirs:
-      new_x, new_y = x+d_x, y+d_y
-      if any([new_x<0, new_y<0, new_x>=len(line), new_y>=len(lines)]): continue
-      elif lines[new_y][new_x] in '@x':
-        adj_rolls += 1
-      if adj_rolls >= 4: break
-    if adj_rolls < 4:
-      lines[y][x] = 'x'
-      ans1 += 1
+#Replaces all free rolls (already marked with 'x') and replaces them with '.'. Returns the new grid and if a change is made.
+def free_roll_remover(lines):
+  for y, line in enumerate(lines):
+    for x, ch in enumerate(line):
+      if ch == 'x': 
+        lines[y][x] = '.'
+  return lines
  
-for x in lines:
-  print(''.join(x))
-print(f"The number of free paper rolls is {ans1}.")
+#[print(''.join(x)) for x in lines]
+lines, ans1 = free_roll_counter(lines)
+#print()
+#[print(''.join(x)) for x in lines]
+
+
 
 ## Part 2
-# Problem: 
+# Problem: When you have found all the roles that can be removed, find the next set of rolls that can be removed. Keep doing this until you have no more rolls left remove. Give the number of rolls that can be removed overall.
 
-# Solution: 
+# Solution: Continously iterate by removing free rolls, keeping track of the removed count, then 
 
+remove_count = ans1
+ans2 = remove_count
+
+while remove_count != 0:
+  #print(f"Remove {remove_count} free rolls of paper:")
+  lines = free_roll_remover(lines)
+  lines, remove_count = free_roll_counter(lines)
+  ans2 += remove_count
+  #[print(''.join(x)) for x in lines]
+  #print()
+
+
+print(f"The number of free paper rolls intially is {ans1}.")
+print(f"The number of free paper rolls overall is {ans2}.")
 
 end_time = time.perf_counter()
 
