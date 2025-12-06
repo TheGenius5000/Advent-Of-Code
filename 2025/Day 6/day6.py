@@ -52,7 +52,7 @@ while True:
     if caret >= len(lines[0]): break
     continue
   nums.append(int(''.join([x[caret] for x in lines[:-1]]).strip()))#Vertical read
-  if lines[-1][caret] != " ":
+  if lines[-1][caret] != " ":#Capture function
     func = symbol_parser(lines[-1][caret])
   caret += 1
 
