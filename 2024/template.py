@@ -5,7 +5,7 @@ import time
 
 start_time = time.perf_counter()
 
-with open() as f:
+with open(r"") as f:
   lines = f.read().splitlines()
 
 ## Part 1
