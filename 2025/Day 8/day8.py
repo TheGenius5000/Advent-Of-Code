@@ -24,19 +24,18 @@ circuits = [{tuple(x)} for x in lines]
 iterations = 0
 
 while len(circuits) > 1:
+  iterations += 1
   if iterations == 1000: ans1_circuits = copy.deepcopy(circuits)
   shortest_connection = possible_connections.pop(0)
   dist, (coords0, coords1) = shortest_connection
   current_circuit = circuits.pop(next(i for i, circuit in enumerate(circuits) if coords0 in circuit))
-  for i, circuit in enumerate(circuits):
-    if coords1 in circuit:
-      merge_circuit = circuits.pop(i)
-      break
-  else:
-    merge_circuit = set()
+  if coords1 in current_circuit:
+    circuits.append(current_circuit)
+    continue
+  merge_circuit = circuits.pop(next(i for i, circuit in enumerate(circuits) if coords1 in circuit))
   current_circuit |= merge_circuit
   circuits.append(current_circuit)
-  iterations += 1
+  
 
 
 ans1_circuits = sorted(ans1_circuits, key=len, reverse=True)[:3]
