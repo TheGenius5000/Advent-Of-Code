@@ -6,7 +6,7 @@ from itertools import combinations
 
 start_time = time.perf_counter()
 
-with open(r"D:\GitHub\Advent-Of-Code\2025\Day 9\input.txt") as f:
+with open(r"input.txt") as f:
   coords = [tuple(map(int, x.split(","))) for x in f.read().splitlines()]
 
 ## Part 1
