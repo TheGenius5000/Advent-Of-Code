@@ -2,7 +2,7 @@ import time
 from itertools import combinations
 
 ## Day 9 - Movie Theater
-## Average runtime: ~
+## Average runtime: ~0.66 seconds
 
 start_time = time.perf_counter()
 
@@ -32,27 +32,31 @@ print(f"The max square that can be made out of the red tiles is {ans1}.")
 # Solution: A similar solution to above, but also with the restriction of all the corners of the rectangle existing within said polygon. You can do this by raycasting with the edges of the polygon.
 #           The vertices have been pruned into edges, so that edges can be checked directly.
 
+def vertical_edge_check(line, check1):
+  stationary_coord, (start, end) = line
+  for next_edge in vertical_edge_lookup:
+    if next_edge <= start: continue
+    if next_edge >= end: break
+    for line_start, line_end in vertical_edges[next_edge]:
+      if check1 and (line_start <= stationary_coord < line_end): return True 
+      elif line_start < stationary_coord <= line_end: return True
+  return False
+
 
 def bad_rectangle():
-  y, (x_start, x_end) = top_line
-  for i, next_edge in enumerate(vertical_edge_lookup):
-    if next_edge > x_start: break
-  for y_line_start, y_line_end in vertical_edges[next_edge]:
-    if y_line_start <= y < y_line_end: return True 
-  y, (x_start, x_end) = bottom_line
-  for x in range(x_start+1, x_end):
-    if x not in vertical_edges: continue
-    for y_line_start, y_line_end in vertical_edges[x]:
-      if y_line_start < y <= y_line_end: return True
+  if vertical_edge_check(top_line, True): return True
+  if vertical_edge_check(bottom_line, False): return True
   x, (y_start, y_end) = left_line
-  for y in range(y_start+1, y_end):
-    if y not in horizontal_edges: continue
-    for x_line_start, x_line_end in horizontal_edges[y]:
+  for next_edge in horizontal_edge_lookup:
+    if next_edge <= y_start: continue
+    if next_edge >= y_end: break
+    for x_line_start, x_line_end in horizontal_edges[next_edge]:
       if x_line_start <= x < x_line_end: return True
   x, (y_start, y_end) = right_line
-  for y in range(y_start+1, y_end):
-    if y not in horizontal_edges: continue
-    for x_line_start, x_line_end in horizontal_edges[y]:
+  for next_edge in horizontal_edge_lookup:
+    if next_edge <= y_start: continue
+    if next_edge >= y_end: break
+    for x_line_start, x_line_end in horizontal_edges[next_edge]:
       if x_line_start < x <= x_line_end: return True
   return False
 
@@ -98,7 +102,6 @@ for area, ((x0, y0), (x1, y1)) in rectangles:
   bottom_line = (y1, sorted_tuple(x0, x1))
   left_line = (x0, sorted_tuple(y0, y1))
   right_line = (x1, sorted_tuple(y0, y1))
-  vertical_lines = [(x0, sorted_tuple(y0, y1)), (x1, sorted_tuple(y0, y1))]
   bad = bad_rectangle()
   if not bad:
     ans2 = area
