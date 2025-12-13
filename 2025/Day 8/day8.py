@@ -7,7 +7,7 @@ import copy
 
 start_time = time.perf_counter()
 
-with open(r"input.txt") as f:
+with open(r"D:\GitHub\Advent-Of-Code\2025\Day 8\input.txt") as f:
   lines = [list(map(int, line.split(","))) for line in f.read().splitlines()]
 
 
