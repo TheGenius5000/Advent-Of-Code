@@ -2,7 +2,7 @@ import time
 import math
 
 ## Day 12 - 
-## Average runtime: ~
+## Average runtime: ~0.0029 seconds
 
 start_time = time.perf_counter()
 
